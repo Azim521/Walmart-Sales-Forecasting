@@ -71,12 +71,12 @@ def forecast_next_4_weeks(store_id, dept_id):
 
         pred = model.predict(X_input)[0]
 
-        new_row["Weekly_Sales"] = pred
+        new_row["Weekly_Sales"] = round(float(pred), 2)
         predictions.append(new_row)
 
         history = pd.concat([history, pd.DataFrame([new_row])])
 
-    return pd.DataFrame(predictions)[["Date", "Weekly_Sales"]]
+    return pd.DataFrame(predictions)[["Date", "Weekly_Sales"]].reset_index(drop=True)
 
 # -----------------------------
 # Run Forecast
@@ -86,7 +86,7 @@ if st.button("Generate 4-Week Forecast"):
     forecast_df = forecast_next_4_weeks(store_id, dept_id)
 
     st.subheader("Forecast Results")
-    st.dataframe(forecast_df)
+    st.dataframe(forecast_df.style.format({"Weekly_Sales": "${:,.2f}"}))
 
     # Plot
     history = df[(df["Store"] == store_id) & (df["Dept"] == dept_id)].copy()
