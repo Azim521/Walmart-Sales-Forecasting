@@ -8,6 +8,11 @@ The model predicts the next 4 weeks of weekly sales for a selected Store–Depar
 
 A live Streamlit app is deployed for interactive forecasting.
 
+## 🚀 Live Application
+
+🔗 **Try the live app here:**  
+[(Streamlit App)](https://walmart-sales-forecasting-azim.streamlit.app/)
+
 
 🎯 Problem Statement
 
